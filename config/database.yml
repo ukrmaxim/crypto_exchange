@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: crypto_exchange_development
+
+test:
+  <<: *default
+  database: crypto_exchange_test
+
+production:
+  <<: *default
+  database: crypto_exchange_production
+  username: crypto_exchange
+  password: <%= ENV["CRYPTO_EXCHANGE_DATABASE_PASSWORD"] %>
