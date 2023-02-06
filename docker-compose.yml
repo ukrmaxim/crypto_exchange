@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:15.1-alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
+    volumes:
+      - .:/code
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+      - frontend
+  frontend:
+    build: .
+    command: bash -c "foreman start -f Procfile.dev"
+    stdin_open: true
+    tty: true
