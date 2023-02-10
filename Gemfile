@@ -16,6 +16,7 @@ gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'pry-rails', '~> 0.3.9'

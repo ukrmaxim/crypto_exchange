@@ -18,6 +18,9 @@ rb:
 console:
 	docker compose run web rails console
 
+crontab:
+	docker compose run --rm web bundle exec whenever --update-crontab
+
 main:
 	git push origin main
 

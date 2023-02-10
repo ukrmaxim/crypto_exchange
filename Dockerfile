@@ -15,3 +15,4 @@ RUN bundle install
 COPY package.json yarn.lock ./
 RUN yarn install
 COPY . ./
+RUN bundle exec whenever --update-crontab
