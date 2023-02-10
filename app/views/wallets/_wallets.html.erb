@@ -1,0 +1,41 @@
+<h3 class="text-center mt-5">Wallets</h3>
+<div class="table-responsive">
+  <table class="table table-bordered table-sm caption-top">
+    <thead class="text-center">
+    <tr>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Private key</th>
+      <th>Public key</th>
+      <th>Balance</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% wallets.each do |wallet| %>
+      <%= form_with model: wallet do |f| %>
+        <tr>
+          <td class="align-middle"><%= f.text_field :title, class: 'form-control' %></td>
+          <td class="align-middle"><%= wallet.address %></td>
+          <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= wallet.priv_key %></div></td>
+          <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= wallet.pub_key %></div></td>
+          <td class="align-middle"><%= wallet.balance %></td>
+          <td class="align-middle text-center">
+          <%= button_tag type: 'submit', data: { turbo_confirm: "Are you sure to update wallet?" },
+                                        class: "btn btn-success btn-sm", title: "Update" do %>
+            <i class="bi bi-arrow-clockwise"></i>
+          <% end %>
+          </td>
+           <td class="align-middle text-center">
+          <%= link_to wallet, data: { turbo_method: :delete, turbo_confirm: "Are you sure to delete wallet?" },
+                              class: "btn btn-danger btn-sm", title: "Delete" do %>
+            <i class="bi bi-trash"></i>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
