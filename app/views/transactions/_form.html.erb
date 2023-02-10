@@ -1,0 +1,73 @@
+<div class="container">
+<main>
+  <div class="py-5 text-center">
+    <h3>Exchange form</h3>
+  </div>
+
+  <div class="row g-5">
+    <div class="col-md-3"></div>
+      <div class="col-md-6">
+       <%= form_with(model: transaction, data: { controller: "autosubmit" }) do |form| %>
+        <div class="row g-3">
+          <div class="col-sm-8">
+            <%= form.label :amount_send, 'You send', style: "display: block" %>
+            <%= form.text_field :amount_send, class: 'form-control', autofocus: true %>
+          </div>
+
+          <div class="col-md-4">
+            <%= form.label :currency_from, 'Currency', style: "display: block" %>
+            <%= form.select :currency_from, Transaction.currencies.keys, class: "form-control", selected: 'USDT' %>
+          </div>
+
+          <div class="card border border-0 my-2">
+            <div class="card-body">
+              1 USDT ~ <%= ex_rate %> BTC
+            </div>
+          </div>
+
+          <div class="col-sm-8 mt-0">
+            <%= form.label :amount_get, 'You get', style: "display: block" %>
+            <%= form.text_field :amount_get, class: 'form-control' %>
+          </div>
+
+          <div class="col-md-4 mt-0">
+            <%= form.label :currency_to, 'Currency', style: "display: block" %>
+            <%= form.select :currency_to, Transaction.currencies.keys, class: 'form-control', selected: 'BTC' %>
+          </div>
+
+          <div class="col-12">
+            <%= form.label :recip_email, 'Email', style: "display: block" %>
+            <%= form.email_field :recip_email, class: 'form-control' %>
+          </div>
+
+          <div class="col-12">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Exchange fee - <%= ex_fee %></li>
+              <li class="list-group-item">Network fee - <%= net_fee %></li>
+            </ul>
+          </div>
+
+          <div class="col-12">
+            <%= form.label :recip_btc_address, 'Wallet address', style: "display: block" %>
+            <%= form.text_field :recip_btc_address, class: 'form-control' %>
+          </div>
+
+          <div class="form-check">
+            <%= form.check_box :kyc %> I agree with KYC
+          </div>
+
+          <hr class="my-4">
+          <div class="row">
+            <div class="col-md-6">
+              <%= form.submit 'Exchange', class: 'w-100 btn btn-lg btn-outline-primary' %>
+            </div>
+            <div class="col-md-6">
+              <%= link_to "Back", root_path, class: 'w-100 btn btn-lg btn-outline-primary' %>
+            </div>
+          </div>
+        </div>
+       <% end %>
+      </div>
+    <div class="col-md-3"></div>
+  </div>
+</main>

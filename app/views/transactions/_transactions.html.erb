@@ -1,0 +1,33 @@
+<h3 class="text-center">Transactions</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-sm">
+          <thead class="text-center">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date/Time</th>
+              <th scope="col">Recipient email</th>
+              <th scope="col">TXid</th>
+              <th scope="col">From currency</th>
+              <th scope="col">To currency</th>
+              <th scope="col">Exchange rate</th>
+              <th scope="col">Exchange fee</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.id %></td>
+              <td><%= transaction.created_at %></td>
+              <td><%= transaction.recip_email %></td>
+              <td><%= transaction.txid %></td>
+              <td><%= transaction.amount_send %></td>
+              <td><%= transaction.amount_received %></td>
+              <td><%= transaction.ex_rate %></td>
+              <td><%= transaction.ex_fee %></td>
+              <td><%= transaction.status %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
