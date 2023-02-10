@@ -1,0 +1,50 @@
+<div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">USDT to BTC</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Exchange fee (%) - <%= ex_fee %></li>
+          <li>Network fee (BTC) - <%= net_fee %><li>
+          <li>Current exchange rate (BTC) - <%= ex_rate%></li>
+        </ul>
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to "Exchange", new_transaction_path, class: 'w-100 btn btn-lg btn-outline-primary' %>
+          </div>
+          <div class="col-md-6">
+            <%= button_to "Update rate", { controller: :static_pages, action: :update_rate }, method: :get,
+                  class: 'w-100 btn btn-lg btn-outline-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">Dashboard</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Transaction statistics</li>
+          <li>List of transactions</li>
+          <li>Exchange wallet</li>
+        </ul>
+        <div class="row">
+          <div class="col-md-4">
+            <%= link_to "Transactions", transactions_path, class: 'w-100 btn btn-lg btn-outline-primary' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to "Wallets", wallets_path, class: 'w-100 btn btn-lg btn-outline-primary' %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to "Settings", settings_path, class: 'w-100 btn btn-lg btn-outline-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
