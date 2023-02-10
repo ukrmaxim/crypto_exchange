@@ -1,0 +1,8 @@
+<div data-controller="autohide">
+  <% flash.each do |key, value| %>
+    <div class="alert <%= bootstrap_class(key)%> alert-dismissible fade show" role="alert" style="position:absolute; z-index: 2; right: 10px">
+      <%= content_tag :div, value, id: key %>
+    <% end %>
+    <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>

@@ -36,14 +36,18 @@ Metrics/ParameterLists:
 Metrics/MethodLength:
   Description: "Avoid methods longer than 5 lines of code."
   StyleGuide: "https://github.com/bbatsov/ruby-style-guide#short-methods"
-  Max: 5
+  Max: 10
   Enabled: true
+  AllowedMethods:
+    - change
 
 Metrics/BlockLength:
   CountComments: false
-  Max: 5
+  Max: 25
   AllowedMethods:
+    - change
     - context
+    - define
     - describe
     - it
     - shared_examples
@@ -192,3 +196,6 @@ RSpec/MultipleMemoizedHelpers:
   Description: "Checks if example groups contain too many let and subject calls."
   StyleGuide: "https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecmultiplememoizedhelpers"
   Max: 6
+
+Metrics/AbcSize:
+  Enabled: false

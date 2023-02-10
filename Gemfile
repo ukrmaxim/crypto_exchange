@@ -8,6 +8,7 @@ gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'foreman'
 gem 'jsbundling-rails'
+gem 'httparty'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
@@ -17,8 +18,6 @@ gem 'turbo-rails'
 gem 'tzinfo-data'
 
 group :development, :test do
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rubocop-performance', '~> 1.15', '>= 1.15.2', require: false
   gem 'rubocop-rails', '~> 2.17', '>= 2.17.4', require: false

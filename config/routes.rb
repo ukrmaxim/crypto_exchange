@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root 'static_pages#index'
+  get 'update_rate', action: :update_rate, controller: 'static_pages'
+  get 'check_balance', action: :check_balance, controller: 'wallets'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :wallets, only: %i[index create update destroy]
+  resources :settings, only: %i[index create update destroy]
+  resources :transactions, only: %i[index new create]
 end
