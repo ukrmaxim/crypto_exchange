@@ -10,6 +10,7 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
     volumes:
       - .:/code
+      - ./docker/database.yml:/code/config/database.yml
     ports:
       - 3000:3000
     stdin_open: true
@@ -19,6 +20,6 @@ services:
       - frontend
   frontend:
     build: .
-    command: bash -c "foreman start -f Procfile.dev"
+    command: bash -c "foreman start -f docker/Procfile_docker.dev"
     stdin_open: true
     tty: true
