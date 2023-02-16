@@ -7,27 +7,31 @@
   <div class="row g-5">
     <div class="col-md-3"></div>
       <div class="col-md-6">
-       <%= form_with(model: transaction, data: { controller: "autosubmit" }) do |form| %>
+       <%= form_with(model: transaction, data: { controller: "form" }) do |form| %>
         <div class="row g-3">
           <div class="col-sm-8">
             <%= form.label :amount_send, 'You send', style: "display: block" %>
-            <%= form.text_field :amount_send, class: 'form-control', autofocus: true %>
+            <%= form.number_field :amount_send, step: 0.001,
+              data: { 'action': 'input->form#updateGetAmount input->form#updateExFeeAmount', 'form-target': 'sendAmount' },
+              id: 'send', class: 'form-control', autofocus: true %>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-4 ">
             <%= form.label :currency_from, 'Currency', style: "display: block" %>
             <%= form.select :currency_from, Transaction.currencies.keys, class: "form-control", selected: 'USDT' %>
           </div>
 
           <div class="card border border-0 my-2">
             <div class="card-body">
-              1 USDT ~ <%= ex_rate %> BTC
+              1 USDT ~ <span data-form-target = 'exRate'><%= ex_rate %></span> BTC
             </div>
           </div>
 
           <div class="col-sm-8 mt-0">
             <%= form.label :amount_get, 'You get', style: "display: block" %>
-            <%= form.text_field :amount_get, class: 'form-control' %>
+            <%= form.number_field :amount_get, step: 0.00000001,
+              data: { 'action': 'input->form#updateSendAmount input->form#updateExFeeAmount', 'form-target': 'getAmount' },
+              id: "get", class: 'form-control' %>
           </div>
 
           <div class="col-md-4 mt-0">
@@ -42,8 +46,11 @@
 
           <div class="col-12">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Exchange fee - <%= ex_fee %></li>
-              <li class="list-group-item">Network fee - <%= net_fee %></li>
+              <li class="list-group-item">
+                Exchange fee (<span data-form-target = 'exFee'><%= ex_fee %></span>%)
+                 - <span data-form-target = 'exFeeAmount'></span>
+              </li>
+              <li class="list-group-item">Network fee (BTC) - <span data-form-target = 'netFee'><%= net_fee %></span></li>
             </ul>
           </div>
 
