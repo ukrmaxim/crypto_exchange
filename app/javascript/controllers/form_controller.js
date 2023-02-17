@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="form"
 export default class extends Controller {
-  static targets = ["exRate", "exFee", "netFee", "sendAmount", "getAmount", "exFeeAmount"]
+  static targets = ["exRate", "exFee", "netFee", "sendAmount", "getAmount", "exFeeAmount", "exFeeAmountHidden"]
 
   updateGetAmount() {
     const exfee = this.exFeeTarget.textContent / 100
@@ -35,8 +35,10 @@ export default class extends Controller {
     const sum = (this.sendAmount() * exrate) * exfee
     if (sum > 0) {
       this.exFeeAmountTarget.textContent = sum.toFixed(8)
+      this.exFeeAmountHiddenTarget.value = sum.toFixed(8)
     } else {
       this.exFeeAmountTarget.textContent = 0
+      this.exFeeAmountHiddenTarget.value = 0
     }
   }
 

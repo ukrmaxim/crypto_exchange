@@ -9,3 +9,6 @@ application.register("autohide", AutohideController)
 
 import FormController from "./form_controller"
 application.register("form", FormController)
+
+import InputValidationController from "./input_validation_controller"
+application.register("input-validation", InputValidationController)

@@ -17,15 +17,15 @@
           <tbody>
             <% transactions.each do |transaction| %>
             <tr>
-              <td><%= transaction.id %></td>
-              <td><%= transaction.created_at %></td>
-              <td><%= transaction.recip_email %></td>
-              <td><%= transaction.txid %></td>
-              <td><%= transaction.amount_send %></td>
-              <td><%= transaction.amount_received %></td>
-              <td><%= transaction.ex_rate %></td>
-              <td><%= transaction.ex_fee %></td>
-              <td><%= transaction.status %></td>
+              <td class="align-middle"><%= link_to transaction.id, transaction_path(transaction) %></td>
+              <td class="align-middle"><%= transaction.created_at.strftime("%Y.%m.%d %H:%M:%S") %></td>
+              <td class="align-middle"><%= transaction.recip_email %></td>
+              <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= transaction.txid %></div></td>
+              <td class="align-middle text-center"><%= transaction.currency_from %></td>
+              <td class="align-middle text-center"><%= transaction.currency_to %></td>
+              <td class="align-middle"><%= transaction.ex_rate %></td>
+              <td class="align-middle"><%= transaction.ex_fee %></td>
+              <td class="align-middle text-center"><%= transaction.status %></td>
             </tr>
           <% end %>
           </tbody>
