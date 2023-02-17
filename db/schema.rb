@@ -31,10 +31,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_112512) do
     t.string "currency_from"
     t.string "currency_to"
     t.decimal "ex_rate", precision: 12, scale: 8
-    t.integer "ex_fee"
+    t.decimal "ex_fee", precision: 12, scale: 8
     t.decimal "net_fee", precision: 12, scale: 8
     t.string "recip_btc_address"
-    t.boolean "kyc", default: false, null: false
     t.integer "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
