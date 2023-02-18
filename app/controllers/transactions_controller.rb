@@ -5,9 +5,9 @@ class TransactionsController < ApplicationController
                                except: %i[new create show]
 
   def index
-    @transactions = Transaction.all
+    @pagy, @transactions = pagy(Transaction.all)
 
-    render locals: { transactions: @transactions.order(id: :asc),
+    render locals: { transactions: @transactions.order(created_at: :desc),
                      total_tx: @transactions.count,
                      total_ex_fee: @transactions.success.sum(&:ex_fee),
                      total_success_tx: @transactions.success.count }

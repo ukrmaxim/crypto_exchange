@@ -1,7 +1,9 @@
 # README
 
 Demo version of the crypto exchange.
-Using this application, it is possible to create a bitcoin address on the `testnet` network and use this address to exchange from `USDT` to `BTC`, calculating the commission of the exchanger itself and taking into account the commission of miners (fixed). The current exchange rate is obtained from the public API (according to the schedule and also manually). The balance of a bitcoin address is updated automatically, as well as with each exchange operation.
+Using this application, it is possible to create a bitcoin address on the `testnet` network and use this address to exchange from `USDT` to `BTC`, calculating the commission of the exchanger itself and taking into account the commission of miners (fixed). The current exchange rate is obtained from the `public API` (according to the schedule and also manually). The balance of bitcoin address is updated automatically, as well as with each exchange operation and also manually.
+
+The application uses encryption of sensitive information at the application level. It works by declaring which attributes are to be encrypted, and seamlessly encrypts and decrypts them as needed. The encryption layer is between the database and the application. The application will have access to unencrypted data, but the database will store it encrypted.
 
 ## Ruby and Ruby on Rails version
 
@@ -44,10 +46,11 @@ Using this application, it is possible to create a bitcoin address on the `testn
 
       docker compose build
 
-* Create DB and run migration
+* Create DB and run migration and seeds
 
       docker compose run --rm web rails db:create
       docker compose run --rm web rails db:migrate
+      docker compose run --rm web rails db:seed
 
 * Create and start containers
 

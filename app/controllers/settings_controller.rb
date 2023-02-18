@@ -3,14 +3,12 @@ class SettingsController < ApplicationController
   http_basic_authenticate_with name: Rails.application.credentials.dig(:http_auth, :name),
                                password: Rails.application.credentials.dig(:http_auth, :password)
 
-  # GET /settings
   def index
     @settings = Setting.all
 
     render locals: { settings: @settings, new_setting: Setting.new }
   end
 
-  # POST /settings
   def create
     @setting = Setting.new(setting_params)
 
@@ -21,7 +19,6 @@ class SettingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /settings/1
   def update
     if @setting.update(setting_params)
       redirect_to settings_path, notice: "Setting parametr '#{@setting.title}' was successfully updated."
@@ -30,7 +27,6 @@ class SettingsController < ApplicationController
     end
   end
 
-  # DELETE /settings/1
   def destroy
     @setting.destroy
     redirect_to settings_url, notice: 'Setting parametr was successfully destroyed.'

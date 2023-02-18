@@ -3,12 +3,10 @@ class WalletsController < ApplicationController
   http_basic_authenticate_with name: Rails.application.credentials.dig(:http_auth, :name),
                                password: Rails.application.credentials.dig(:http_auth, :password)
 
-  # GET /wallets
   def index
     render locals: { wallets: Wallet.all.order(title: :asc), new_wallet: Wallet.new }
   end
 
-  # POST /wallets
   def create
     @wallet = GenerateWalletService.new(params[:wallet][:title]).call
 
@@ -19,7 +17,6 @@ class WalletsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /wallets/1
   def update
     if @wallet.update(wallet_params)
       redirect_to wallets_path, notice: "Wallet '#{@wallet.title}' was successfully updated."
@@ -28,7 +25,6 @@ class WalletsController < ApplicationController
     end
   end
 
-  # DELETE /wallets/1
   def destroy
     @wallet.destroy
     redirect_to wallets_url, notice: 'Wallet was successfully destroyed.'

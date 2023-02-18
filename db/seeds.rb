@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+puts 'Seeding...'
+Setting.create([{ title: 'ex_wallet', value: 'your bitcoin address', desc: 'Wallet for exchanger' },
+                { title: 'ex_fee', value: '3', desc: 'Exchange fee (in %)' },
+                { title: 'ex_rate', value: '0.00004046', desc: 'Exchange rate (in BTC)' },
+                { title: 'net_fee', value: '0.00000600', desc: 'Network fee (in BTC)' }])
+puts 'Seeding done.'
