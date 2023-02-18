@@ -1,11 +1,9 @@
-# rubocop:disable Metrics/MethodLength, Metrics/PerceivedComplexity
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show]
   http_basic_authenticate_with name: Rails.application.credentials.dig(:http_auth, :name),
                                password: Rails.application.credentials.dig(:http_auth, :password),
                                except: %i[new create show]
 
-  # GET /transactions
   def index
     @transactions = Transaction.all
 
@@ -19,46 +17,27 @@ class TransactionsController < ApplicationController
     render locals: { net_fee: Setting.find_by(title: 'net_fee')&.value || 'Parameter not set' }
   end
 
-  # GET /transactions/new
   def new
-    render locals: locals(Transaction.new)
+    render locals: { transaction: Transaction.new,
+                     ex_rate: Setting.find_by(title: 'ex_rate')&.value || 'Parameter not set',
+                     ex_fee: Setting.find_by(title: 'ex_fee')&.value || 'Parameter not set',
+                     net_fee: Setting.find_by(title: 'net_fee')&.value || 'Parameter not set' }
   end
 
-  # POST /transactions
   def create
-    @transaction = Transaction.new(transaction_params)
+    @new_transaction = Transaction.new(transaction_params)
 
-    if @transaction.valid?
-      service = CreateTransactionService.new(params[:transaction][:amount_get],
-                                             params[:transaction][:recip_btc_address]).call
-      if service.code == 200
-        @transaction = Transaction.new(transaction_params.merge(status: 0, txid: service.body))
-        if @transaction.save
-          redirect_to transaction_path(@transaction), notice: 'Exchange was successful'
-        else
-          render json: ErrorSerializer.serialize(@transaction.errors), status: :unprocessable_entity
-        end
-      else
-        @transaction = Transaction.new(transaction_params.merge(status: 1, txid: service.body))
-        if @transaction.save
-          redirect_to new_transaction_path, alert: 'Exchange was not successful', locals: locals(@transaction)
-        else
-          render json: ErrorSerializer.serialize(@transaction.errors), status: :unprocessable_entity
-        end
-      end
+    if @new_transaction.valid?
+      broadcast_transaction = CreateTransactionService.new(@new_transaction).call
+      @transaction = BroadcastTransactionService.new(broadcast_transaction, @new_transaction).call
+
+      redirect_to transaction_path(@transaction)
     else
-      render json: ErrorSerializer.serialize(@transaction.errors), status: :unprocessable_entity
+      render json: ErrorSerializer.serialize(@new_transaction.errors), status: :unprocessable_entity
     end
   end
 
   private
-
-  def locals(transaction)
-    { transaction:,
-      ex_rate: Setting.find_by(title: 'ex_rate')&.value || 'Parameter not set',
-      ex_fee: Setting.find_by(title: 'ex_fee')&.value || 'Parameter not set',
-      net_fee: Setting.find_by(title: 'net_fee')&.value || 'Parameter not set' }
-  end
 
   def set_transaction
     @transaction = Transaction.find(params[:id])
@@ -69,4 +48,3 @@ class TransactionsController < ApplicationController
                                         :currency_to, :recip_btc_address, :kyc, :ex_fee, :ex_rate, :net_fee)
   end
 end
-# rubocop:enable Metrics/MethodLength, Metrics/PerceivedComplexity

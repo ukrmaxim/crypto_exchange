@@ -19,7 +19,8 @@
 
           <div class="col-md-4 ">
             <%= form.label :currency_from, 'Currency', style: "display: block" %>
-            <%= form.select :currency_from, Transaction.currencies.keys, class: "form-control", selected: 'USDT' %>
+            <%= form.hidden_field :currency_from, value: 'USDT' %>
+            <span type="text" class="form-control" id="amount_send">USTD</span>
           </div>
 
           <div class="card border border-0 my-0">
@@ -39,7 +40,8 @@
 
           <div class="col-md-4 mt-0">
             <%= form.label :currency_to, 'Currency', style: "display: block" %>
-            <%= form.select :currency_to, Transaction.currencies.keys, class: 'form-control', selected: 'BTC' %>
+            <%= form.hidden_field :currency_to, value: 'BTC' %>
+            <span type="text" class="form-control" id="amount_send">BTC</span>
           </div>
 
           <div class="col-md-12">

@@ -2,14 +2,12 @@ class Transaction < ApplicationRecord
   encrypts :recip_email, :recip_btc_address, :txid, deterministic: true
 
   enum status: { success: 0, fail: 1 }
-  enum currency: { USDT: 0, BTC: 1 }
-
-  before_create :check_balance
 
   validates :amount_send, :amount_get, :recip_email, :recip_btc_address, :ex_fee, :ex_rate, :net_fee, presence: true
-  validates :amount_send, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 30 }
+  validates :amount_send, numericality: { greater_than_or_equal_to: 0.1, less_than_or_equal_to: 30 }
   validates :recip_email, format: { with: /\A[\w.-]+@[a-z\d]+\.[a-z]+\z/ }
   validates :kyc, acceptance: true
+  validate :check_balance
   validate :allowed_btc_amount
   validate :btc_address
 
@@ -37,6 +35,8 @@ class Transaction < ApplicationRecord
   end
 
   def check_balance
+    return if amount_get.nil?
+
     CheckBalanceService.new.call
 
     wallet_address = Setting.find_by(title: 'ex_wallet')&.value
