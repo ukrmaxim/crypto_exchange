@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def bootstrap_class(flash_type)
     {
       success: 'alert-success',
