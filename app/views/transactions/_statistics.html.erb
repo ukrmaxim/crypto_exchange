@@ -10,9 +10,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= total_ex_fee %></td>
-              <td><%= total_tx %></td>
-              <td><%= total_success_tx %></td>
+              <td><%= total_ex_fee(@transactions) %></td>
+              <td><%= total_tx(@transactions) %></td>
+              <td><%= total_success_tx(@transactions) %></td>
             </tr>
           </tbody>
         </table>

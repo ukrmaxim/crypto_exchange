@@ -5,23 +5,13 @@ class TransactionsController < ApplicationController
                                except: %i[new create show]
 
   def index
-    @pagy, @transactions = pagy(Transaction.all)
-
-    render locals: { transactions: @transactions.order(created_at: :desc),
-                     total_tx: @transactions.count,
-                     total_ex_fee: @transactions.success.sum(&:ex_fee),
-                     total_success_tx: @transactions.success.count }
+    @pagy, @transactions = pagy(Transaction.all.order(created_at: :desc))
   end
 
-  def show
-    render locals: { net_fee: Setting.find_by(title: 'net_fee')&.value || 'Parameter not set' }
-  end
+  def show; end
 
   def new
-    render locals: { transaction: Transaction.new,
-                     ex_rate: Setting.find_by(title: 'ex_rate')&.value || 'Parameter not set',
-                     ex_fee: Setting.find_by(title: 'ex_fee')&.value || 'Parameter not set',
-                     net_fee: Setting.find_by(title: 'net_fee')&.value || 'Parameter not set' }
+    @transaction = Transaction.new
   end
 
   def create

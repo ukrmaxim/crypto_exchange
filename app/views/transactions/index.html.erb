@@ -1,7 +1,7 @@
 <div class="container py-3">
-  <%= render 'statistics', total_ex_fee: total_ex_fee, total_tx: total_tx, total_success_tx: total_success_tx %>
+  <%= render 'statistics', transactions: @transactions %>
   <hr class="my-4">
-  <%= render 'transactions', transactions: transactions %>
+  <%= render 'transactions', transactions: @transactions %>
 </div>
 
 <div class="row">
@@ -9,13 +9,13 @@
     <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
   </div>
   <div class="col-md-6 text-end">
-    <% if transactions.count > 5 %>
+    <% if total_tx(@transactions) > 5 %>
       Per page: <%= link_to_unless_current '5', transactions_path(items: 5) %>
     <% end %>
-    <%= link_to_unless_current '20', transactions_path(items: 20) if transactions.count > 20 %>
-    <%= link_to_unless_current '30', transactions_path(items: 30) if transactions.count > 30 %>
-    <%= link_to_unless_current '40', transactions_path(items: 40) if transactions.count > 40 %>
-    <%= link_to_unless_current '50', transactions_path(items: 50) if transactions.count > 50 %>
-    <%= link_to_unless_current 'All', transactions_path(items: transactions.count) if transactions.count > 5 %>
+    <%= link_to_unless_current '20', transactions_path(items: 20) if total_tx(@transactions) > 20 %>
+    <%= link_to_unless_current '30', transactions_path(items: 30) if total_tx(@transactions) > 30 %>
+    <%= link_to_unless_current '40', transactions_path(items: 40) if total_tx(@transactions) > 40 %>
+    <%= link_to_unless_current '50', transactions_path(items: 50) if total_tx(@transactions) > 50 %>
+    <%= link_to_unless_current 'All', transactions_path(items: total_tx(@transactions)) if total_tx(@transactions) > 5 %>
   </div>
 </div>
