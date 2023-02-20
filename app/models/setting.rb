@@ -10,6 +10,6 @@ class Setting < ApplicationRecord
   private
 
   def normalize_title
-    title.downcase!
+    title.downcase! if title.present?
   end
 end

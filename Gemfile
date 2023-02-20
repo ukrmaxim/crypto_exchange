@@ -20,9 +20,13 @@ gem 'tzinfo-data'
 gem 'whenever', require: false
 
 group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-rails', '~> 0.3.9'
+  gem 'rspec-rails'
   gem 'rubocop-performance', '~> 1.15', '>= 1.15.2', require: false
   gem 'rubocop-rails', '~> 2.17', '>= 2.17.4', require: false
   gem 'rubocop-rspec', '~> 2.18', '>= 2.18.1', require: false
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'solargraph'
 end

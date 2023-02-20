@@ -189,7 +189,7 @@ Bundler/OrderedGems:
 RSpec/ExampleLength:
   Description: "Avoid RSpec example longer than 5 lines of code."
   StyleGuide: "https://docs.rubocop.org/rubocop-rspec/cops_rspec.html#rspecexamplelength"
-  Max: 7
+  Max: 20
   Enabled: true
 
 RSpec/MultipleMemoizedHelpers:
