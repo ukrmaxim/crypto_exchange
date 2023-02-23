@@ -4,7 +4,8 @@ class WalletsController < ApplicationController
                                password: Rails.application.credentials.dig(:http_auth, :password)
 
   def index
-    render locals: { wallets: Wallet.all.order(title: :asc), new_wallet: Wallet.new }
+    @wallets = Wallet.all
+    @new_wallet = Wallet.new
   end
 
   def create

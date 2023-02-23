@@ -1,6 +1,6 @@
-<h3 class="text-center mt-5">Settings</h3>
 <div class="table-responsive">
   <table class="table table-bordered table-sm">
+    <h3 class="text-center mt-5">Settings</h3>
     <thead class="text-center">
     <tr>
       <th>Title</th>
@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-    <% settings.each do |setting| %>
+    <% @settings.each do |setting| %>
       <%= form_with model: setting do |f| %>
         <tr>
           <td class="align-middle"><%= f.text_field :title, class: 'form-control' %></td>

@@ -5,8 +5,7 @@ class SettingsController < ApplicationController
 
   def index
     @settings = Setting.all
-
-    render locals: { settings: @settings, new_setting: Setting.new }
+    @new_setting = Setting.new
   end
 
   def create

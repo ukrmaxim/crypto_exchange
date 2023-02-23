@@ -1,6 +1,6 @@
-<h3 class="text-center mt-5">Wallets</h3>
 <div class="table-responsive">
   <table class="table table-bordered table-sm caption-top">
+    <h3 class="text-center mt-5">Wallets</h3>
     <thead class="text-center">
     <tr>
       <th>Title</th>
@@ -13,7 +13,7 @@
     </thead>
 
     <tbody>
-    <% wallets.each do |wallet| %>
+    <% @wallets.each do |wallet| %>
       <%= form_with model: wallet do |f| %>
         <tr>
           <td class="align-middle"><%= f.text_field :title, class: 'form-control' %></td>
