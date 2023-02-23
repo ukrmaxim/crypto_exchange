@@ -3,16 +3,26 @@ require 'rails_helper'
 RSpec.describe Transaction do
   describe 'validations' do
     let(:transaction) { build(:transaction) }
+    let(:setting1) { create(:setting, title: 'ex_rate', value: '0.00004054') }
+    let(:setting2) { create(:setting, title: 'ex_fee', value: '0.00000061') }
+    let(:setting3) { create(:setting, title: 'net_fee', value: '0.00000600') }
+    let(:setting4) { create(:setting, title: 'ex_wallet', value: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA') }
+    let(:wallet) {
+      create(:wallet, title: 'ex_wallet', address: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA',
+                      key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', priv_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a',
+                      pub_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', balance: 0.01954054)
+    }
+
+    before do
+      setting1
+      setting2
+      setting3
+      setting4
+      wallet
+      transaction.validate
+    end
 
     it 'is valid with valid attributes' do
-      Setting.create(title: 'ex_rate', value: '0.00004054')
-      Setting.create(title: 'ex_fee', value: '0.00000061')
-      Setting.create(title: 'net_fee', value: '0.00000600')
-      Setting.create(title: 'ex_wallet', value: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA')
-      Wallet.create(title: 'ex_wallet', address: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA',
-                    key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', priv_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a',
-                    pub_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', balance: 0.01954054)
-
       expect(transaction).to be_valid
     end
 
@@ -37,10 +47,7 @@ RSpec.describe Transaction do
     end
 
     it 'is not valid with amount_get more than max amount' do
-      Setting.create(title: 'ex_rate', value: '50000')
-      Setting.create(title: 'ex_fee', value: '1.5')
-      Setting.create(title: 'net_fee', value: '0.0001')
-      transaction.amount_get = 16
+      transaction.amount_get = 1.00000000
       expect(transaction).not_to be_valid
     end
 

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :setting do
-    sequence(:title) { |n| "Setting#{n}" }
+    sequence(:title) { |n| "setting#{n}" }
     value { 'Setting Value' }
   end
 
@@ -10,6 +10,7 @@ FactoryBot.define do
     key { Faker::Crypto.sha256 }
     priv_key { Faker::Crypto.sha256 }
     pub_key { Faker::Crypto.sha256 }
+    balance { 0.01954054 }
   end
 
   factory :transaction do
@@ -20,7 +21,7 @@ FactoryBot.define do
     ex_fee { 0.00000061 }
     ex_rate { 0.00004054 }
     net_fee { 0.00000600 }
-    kyc { true }
+    kyc { '1' }
 
     trait :success do
       status { :success }
