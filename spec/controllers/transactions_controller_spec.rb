@@ -1,24 +1,10 @@
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 require 'rails_helper'
 require 'support/auth_helper'
+require 'support/transactions_helper'
 
 RSpec.describe TransactionsController do
-  let(:setting1) { create(:setting, title: 'ex_rate', value: '0.00004054') }
-  let(:setting2) { create(:setting, title: 'ex_fee', value: '0.00000061') }
-  let(:setting3) { create(:setting, title: 'net_fee', value: '0.00000600') }
-  let(:setting4) { create(:setting, title: 'ex_wallet', value: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA') }
-  let(:wallet) {
-    create(:wallet, title: 'ex_wallet', address: 'mg1eiohebTsKsmr2UyrzojYLpg6EMqYMLA',
-                    key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', priv_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a',
-                    pub_key: 'bc3fa53a7bc8cd7198c64b8bdd425cd0a', balance: 0.01954054)
-  }
-
   before do
-    setting1
-    setting2
-    setting3
-    setting4
-    wallet
+    settings
   end
 
   describe 'GET #index' do
@@ -103,5 +89,3 @@ RSpec.describe TransactionsController do
     end
   end
 end
-
-# rubocop:enable RSpec/MultipleMemoizedHelpers

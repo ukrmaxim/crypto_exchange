@@ -1,7 +1,5 @@
 class CheckBalanceService
   def call
-    Bitcoin.network = :testnet3
-
     Wallet.all.each do |wallet|
       address = wallet.address
       response = HTTParty.get("https://blockstream.info/testnet/api/address/#{address}/utxo")
