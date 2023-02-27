@@ -1,33 +1,49 @@
-<h3 class="text-center">Transactions</h3>
-      <div class="table-responsive">
-        <table class="table table-bordered table-sm">
-          <thead class="text-center">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Date/Time</th>
-              <th scope="col">Recipient email</th>
-              <th scope="col">TXid</th>
-              <th scope="col">From currency</th>
-              <th scope="col">To currency</th>
-              <th scope="col">Exchange rate</th>
-              <th scope="col">Exchange fee</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% transactions.each do |transaction| %>
-            <tr>
-              <td class="align-middle"><%= link_to transaction.id, transaction_path(transaction) %></td>
-              <td class="align-middle"><%= transaction.created_at.strftime("%Y.%m.%d %H:%M:%S") %></td>
-              <td class="align-middle"><%= transaction.recip_email %></td>
-              <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= transaction.txid %></div></td>
-              <td class="align-middle text-center"><%= transaction.currency_from %></td>
-              <td class="align-middle text-center"><%= transaction.currency_to %></td>
-              <td class="align-middle"><%= transaction.ex_rate %></td>
-              <td class="align-middle"><%= transaction.ex_fee %></td>
-              <td class="align-middle text-center"><%= transaction.status %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
+<div class="table-responsive">
+  <table class="table table-bordered table-sm">
+  <h3 class="text-center">Transactions</h3>
+    <thead class="text-center">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date/Time</th>
+        <th scope="col">Recipient email</th>
+        <th scope="col">TXid</th>
+        <th scope="col">From currency</th>
+        <th scope="col">To currency</th>
+        <th scope="col">Exchange rate</th>
+        <th scope="col">Exchange fee</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transactions.each do |transaction| %>
+      <tr>
+        <td class="align-middle"><%= link_to transaction.id, transaction_path(transaction) %></td>
+        <td class="align-middle"><%= transaction.created_at.strftime("%Y.%m.%d %H:%M:%S") %></td>
+        <td class="align-middle"><%= transaction.recip_email %></td>
+        <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= transaction.txid %></div></td>
+        <td class="align-middle text-center"><%= transaction.currency_from %></td>
+        <td class="align-middle text-center"><%= transaction.currency_to %></td>
+        <td class="align-middle"><%= transaction.ex_rate %></td>
+        <td class="align-middle"><%= transaction.ex_fee %></td>
+        <td class="align-middle text-center"><%= transaction.status %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+  <div class="col-md-6 text-end">
+    <% if total_tx(all_transactions) > 7 %>
+      Per page: <%= link_to_unless_current '7', transactions_path(items: 7) %>
+    <% end %>
+    <%= link_to_unless_current '20', transactions_path(items: 20) if total_tx(all_transactions) > 20 %>
+    <%= link_to_unless_current '30', transactions_path(items: 30) if total_tx(all_transactions) > 30 %>
+    <%= link_to_unless_current '40', transactions_path(items: 40) if total_tx(all_transactions) > 40 %>
+    <%= link_to_unless_current '50', transactions_path(items: 50) if total_tx(all_transactions) > 50 %>
+    <%= link_to_unless_current 'All', transactions_path(items: total_tx(all_transactions)) if total_tx(all_transactions) > 5 %>
+  </div>
+</div>

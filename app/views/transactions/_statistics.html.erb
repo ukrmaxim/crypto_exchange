@@ -1,19 +1,19 @@
-<h3 class="text-centeF">Transaction statistics</h3>
-      <div class="table-responsive">
-        <table class="table table-bordered table-sm text-center">
-          <thead>
-            <tr>
-              <th scope="col">Total success exchange fee</th>
-              <th scope="col">Total transactions</th>
-              <th scope="col">Total success transactions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= total_ex_fee(@transactions) %></td>
-              <td><%= total_tx(@transactions) %></td>
-              <td><%= total_success_tx(@transactions) %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="table-responsive">
+  <table class="table table-bordered table-sm text-center">
+  <h3 class="text-center">Transaction statistics</h3>
+    <thead>
+      <tr>
+        <th scope="col">Total success exchange fee</th>
+        <th scope="col">Total transactions</th>
+        <th scope="col">Total success transactions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= total_ex_fee(@all_transactions) %></td>
+        <td><%= total_tx(@all_transactions) %></td>
+        <td><%= total_success_tx(@all_transactions) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

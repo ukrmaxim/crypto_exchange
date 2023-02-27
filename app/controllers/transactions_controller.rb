@@ -6,6 +6,7 @@ class TransactionsController < ApplicationController
 
   def index
     @pagy, @transactions = pagy(Transaction.all.order(created_at: :desc))
+    @all_transactions = Transaction.all
   end
 
   def show; end

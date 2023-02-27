@@ -1,21 +1,7 @@
 <div class="container py-3">
-  <%= render 'statistics', transactions: @transactions %>
+  <%= render 'statistics', transactions: @transactions, all_transactions: @all_transactions %>
   <hr class="my-4">
-  <%= render 'transactions', transactions: @transactions %>
+  <%= render 'transactions', transactions: @transactions, all_transactions: @all_transactions %>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
-  </div>
-  <div class="col-md-6 text-end">
-    <% if total_tx(@transactions) > 5 %>
-      Per page: <%= link_to_unless_current '5', transactions_path(items: 5) %>
-    <% end %>
-    <%= link_to_unless_current '20', transactions_path(items: 20) if total_tx(@transactions) > 20 %>
-    <%= link_to_unless_current '30', transactions_path(items: 30) if total_tx(@transactions) > 30 %>
-    <%= link_to_unless_current '40', transactions_path(items: 40) if total_tx(@transactions) > 40 %>
-    <%= link_to_unless_current '50', transactions_path(items: 50) if total_tx(@transactions) > 50 %>
-    <%= link_to_unless_current 'All', transactions_path(items: total_tx(@transactions)) if total_tx(@transactions) > 5 %>
-  </div>
-</div>
+

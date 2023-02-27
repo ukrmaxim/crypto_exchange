@@ -7,7 +7,6 @@ class BroadcastTransactionService
   end
 
   def call
-    # Broadcast new transaction to network
     response = HTTParty.post("#{API_URL}tx", body: @broadcast_transaction)
 
     if response.code == 200
