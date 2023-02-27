@@ -14,14 +14,9 @@ RSpec.describe StaticPagesController do
       patch :update_rate
     end
 
-    it 'redirects to the root page' do
+    it 'render ex_rate partial' do
       patch :update_rate
-      expect(response).to redirect_to(root_path)
-    end
-
-    it 'sets a flash notice message' do
-      patch :update_rate
-      expect(flash[:notice]).to eq('Exchange rate was successfully updated')
+      expect(response).to render_template(partial: 'static_pages/_ex_rate')
     end
   end
 end

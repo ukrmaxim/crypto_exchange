@@ -4,6 +4,6 @@ class StaticPagesController < ApplicationController
   def update_rate
     ExchangeRateService.new('USDT', 'BTC').call
 
-    redirect_to root_path, notice: 'Exchange rate was successfully updated'
+    render turbo_stream: turbo_stream.replace('ex_rate', partial: 'ex_rate')
   end
 end

@@ -8,7 +8,7 @@
         <ul class="list-unstyled mt-3 mb-4">
           <li>Exchange fee (%) - <%= ex_fee %></li>
           <li>Network fee (BTC) - <%= net_fee %><li>
-          <li>Current exchange rate (BTC) - <%= ex_rate%></li>
+          <li><%= render 'ex_rate' %></li>
         </ul>
         <div class="row">
           <div class="col-md-6">
@@ -60,6 +60,6 @@
     <p class="card-text">Title: "net_fee", Value: "0.00000600", Desc: "Network fee (in BTC)"</p>
     <p class="card-text">Title: "ex_rate", Value: "0.00004046", Desc: "Exchange rate (in BTC)". Created automatically the first time the rate is updated</p>
     <h5 class="card-title text-center">In the wallets section:</h5>
-    <p class="card-text">Crete wallet with title "ex_wallet". The address of this wallet will need to be specified in the "ex_wallet" option in the settings section</p>
+    <p class="card-text">Create wallet with title "ex_wallet". The address of this wallet will need to be specified in the "ex_wallet" option in the settings section</p>
   </div>
 </div>
