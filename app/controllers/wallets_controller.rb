@@ -3,6 +3,8 @@ class WalletsController < ApplicationController
   http_basic_authenticate_with name: Rails.application.credentials.dig(:http_auth, :name),
                                password: Rails.application.credentials.dig(:http_auth, :password)
 
+  rescue_from StandardError, with: :not_valid_base58_string
+
   def index
     @wallets = Wallet.all
     @new_wallet = Wallet.new
@@ -45,5 +47,9 @@ class WalletsController < ApplicationController
 
   def wallet_params
     params.require(:wallet).permit(:title, :key)
+  end
+
+  def not_valid_base58_string
+    redirect_to wallets_path, alert: 'Key not a valid Base58 string'
   end
 end

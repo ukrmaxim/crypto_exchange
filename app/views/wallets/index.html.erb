@@ -17,9 +17,12 @@
             <% end %>
           </td>
           <% end %>
-          <td class="align-middle">
-          <%= button_to "Check balance", { controller: :wallets, action: :check_balance },
-          method: :get, class: 'btn btn-sm btn-outline-light' %></td>
+          <% unless @wallets.size.zero? %>
+            <td class="align-middle">
+              <%= button_to "Check balance", { controller: :wallets, action: :check_balance },
+              method: :get, class: 'btn btn-sm btn-outline-light' %>
+            </td>
+          <% end %>
           </tr>
         </tbody>
     </table>
