@@ -12,3 +12,6 @@ application.register("form", FormController)
 
 import InputValidationController from "./input_validation_controller"
 application.register("input-validation", InputValidationController)
+
+import ShowhideController from "./showhide_controller"
+application.register("showhide", ShowhideController)

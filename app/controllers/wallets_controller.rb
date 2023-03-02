@@ -9,7 +9,7 @@ class WalletsController < ApplicationController
   end
 
   def create
-    @wallet = GenerateWalletService.new(params[:wallet][:title]).call
+    @wallet = GenerateWalletService.new(params).call
 
     if @wallet.save
       redirect_to wallets_path, notice: "Wallet '#{@wallet.title}' was successfully created."
@@ -44,6 +44,6 @@ class WalletsController < ApplicationController
   end
 
   def wallet_params
-    params.require(:wallet).permit(:title)
+    params.require(:wallet).permit(:title, :key)
   end
 end

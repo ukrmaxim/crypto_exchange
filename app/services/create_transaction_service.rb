@@ -15,7 +15,7 @@ class CreateTransactionService
   end
 
   def call
-    Bitcoin.network = :testnet3
+    Bitcoin.network = :testnet
 
     bitcoin_protocol_txs = bitcoin_protocol_tx_list(@ex_btc_address)
 
