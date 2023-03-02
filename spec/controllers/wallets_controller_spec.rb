@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/auth_helper'
+require 'support/auth_spec_helper'
 
 RSpec.describe WalletsController do
   describe 'GET #index' do

@@ -37,7 +37,10 @@
 
           <div class="col-12">
             <label for="recip_btc_adress" class="form-label">Recipient address</label>
-            <span type="text" class="form-control" id="recip_btc_adress"><%= @transaction.recip_btc_address %></span>
+            <span type="text" class="form-control" id="recip_btc_adress">
+              <%= link_to @transaction.recip_btc_address,
+                "https://blockstream.info/testnet/search?q=#{@transaction.recip_btc_address}", :target => "_blank" %>
+            </span>
           </div>
 
           <div class="col-12">
@@ -49,7 +52,9 @@
 
           <div class="col-12">
             <label for="tx_id" class="form-label">Transaction ID</label>
-            <span type="text" class="form-control" id="tx_id"><%= @transaction.txid %></span>
+            <span type="text" class="form-control" id="tx_id">
+              <%= link_to @transaction.txid, "https://blockstream.info/testnet/search?q=#{@transaction.txid}", :target => "_blank" %>
+            </span>
           </div>
 
           <hr class="my-4">

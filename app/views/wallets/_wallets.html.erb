@@ -17,7 +17,9 @@
       <%= form_with model: wallet do |f| %>
         <tr>
           <td class="align-middle"><%= f.text_field :title, class: 'form-control' %></td>
-          <td class="align-middle"><%= wallet.address %></td>
+          <td class="align-middle">
+            <%= link_to wallet.address, "https://blockstream.info/testnet/search?q=#{wallet.address}", :target => "_blank" %>
+          </td>
           <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= wallet.priv_key %></div></td>
           <td class="align-middle"><div style="word-break: break-all; overflow:auto; max-height:50px"><%= wallet.pub_key %></div></td>
           <td class="align-middle"><%= wallet.balance %></td>

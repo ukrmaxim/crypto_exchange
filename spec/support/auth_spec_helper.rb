@@ -1,4 +1,4 @@
-module AuthHelper
+module AuthSpecHelper
   def http_basic_auth
     name = Rails.application.credentials.dig(:http_auth, :name)
     password = Rails.application.credentials.dig(:http_auth, :password)
@@ -7,5 +7,5 @@ module AuthHelper
 end
 
 RSpec.configure do |config|
-  config.include AuthHelper
+  config.include AuthSpecHelper
 end

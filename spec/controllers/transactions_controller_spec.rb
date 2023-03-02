@@ -1,6 +1,6 @@
 require 'rails_helper'
-require 'support/auth_helper'
-require 'support/transactions_helper'
+require 'support/auth_spec_helper'
+require 'support/transactions_spec_helper'
 
 RSpec.describe TransactionsController do
   before do

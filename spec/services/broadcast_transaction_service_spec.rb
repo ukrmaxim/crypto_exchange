@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/transactions_helper'
+require 'support/transactions_spec_helper'
 
 RSpec.describe BroadcastTransactionService do
   let(:broadcast_transaction) { 'test_broadcast_transaction' }

@@ -1,4 +1,4 @@
-module TransactionsHelper
+module TransactionsSpecHelper
   def settings
     create(:setting, title: 'ex_rate', value: '0.00004054')
     create(:setting, title: 'ex_fee', value: '0.00000061')
@@ -13,5 +13,5 @@ module TransactionsHelper
 end
 
 RSpec.configure do |config|
-  config.include TransactionsHelper
+  config.include TransactionsSpecHelper
 end
