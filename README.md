@@ -40,31 +40,11 @@ The application uses encryption of sensitive information at the application leve
       sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
       sudo docker run hello-world
 
-### Docker build, up, down
-
-* Build or rebuild services
-
-      docker compose build
-
-* Create DB and run migration and seeds
-
-      docker compose run --rm web rails db:create
-      docker compose run --rm web rails db:migrate
-      docker compose run --rm web rails db:seed
-
-* Create and start containers
-
-      docker compose up -d
-
-* Stop and remove containers, networks
-
-      docker compose down
-
 ### Credentials setup
 
 * Generate Active Record encryption keys
 
-      bin/rails db:encryption:init
+      rails db:encryption:init
 
 * Add keys to your credentials
 
@@ -80,3 +60,31 @@ The application uses encryption of sensitive information at the application leve
       http_auth:
         name:
         password:
+
+### Docker build, up, down
+
+* Build or rebuild services
+
+      docker compose build --no-cache
+
+* Create DB and run migration and seeds
+
+      docker compose run --rm web rails db:create
+      docker compose run --rm web rails db:migrate
+      docker compose run --rm web rails db:seed
+
+* Assets precompile
+
+      docker compose run --rm web rails assets:precompile
+
+* Stop and remove containers, networks before clean start
+
+      docker compose down
+
+* Create and start containers
+
+      docker compose up -d
+
+* To terminate the application correctly
+
+      docker compose down
