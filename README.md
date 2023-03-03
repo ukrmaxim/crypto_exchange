@@ -40,6 +40,12 @@ The application uses encryption of sensitive information at the application leve
       sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
       sudo docker run hello-world
 
+### Installing required Javascript packages
+
+* Dependencies from package.json
+
+      yarn install
+
 ### Credentials setup
 
 * Generate Active Record encryption keys
@@ -63,9 +69,11 @@ The application uses encryption of sensitive information at the application leve
 
 ### Docker build, up, down
 
-* Build or rebuild services
+* Build services and test start containers
 
-      docker compose build --no-cache
+      docker compose build
+      docker compose up -d
+      docker compose down
 
 * Create DB and run migration and seeds
 

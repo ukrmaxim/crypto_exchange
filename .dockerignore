@@ -1,6 +1,12 @@
 .idea
 .bundle
 .git
+.vscode
+
+Dockerfile
+docker-compose.yml
+.gitignore
+.dockerignore
 
 # Ignore all logfiles and tempfiles.
 log/*
@@ -13,14 +19,13 @@ tmp/pids/*
 !tmp/pids/
 !tmp/pids/.keep
 
-# Ignore master key for decrypting credentials and more.
-config/master.key
-config/credentials.yml.enc
-
 # Ignore assets
 public/assets
 app/assets/builds/*
 !app/assets/builds/.keep
 
 node_modules
-config/database.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/config/credentials.yml.enc
