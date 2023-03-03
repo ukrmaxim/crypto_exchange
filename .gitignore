@@ -13,12 +13,12 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
-/public/assets
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials.yml.enc
 
+# Ignore assets
+/public/assets
 /app/assets/builds/*
 !/app/assets/builds/.keep
 

@@ -73,10 +73,6 @@ The application uses encryption of sensitive information at the application leve
       docker compose run --rm web rails db:migrate
       docker compose run --rm web rails db:seed
 
-* Assets precompile
-
-      docker compose run --rm web rails assets:precompile
-
 * Stop and remove containers, networks before clean start
 
       docker compose down

@@ -5,6 +5,8 @@ services:
     volumes:
       - .:/code
       - ./docker/database.yml:/code/config/database.yml
+      - assets-volume:/code/app/assets/builds:ro
+      - public-assets-volume:/code/public/assets:ro
     ports:
       - 3000:3000
     stdin_open: true
@@ -22,5 +24,13 @@ services:
   frontend:
     build: .
     command: bash -c "foreman start -f docker/Procfile_docker.dev"
+    volumes:
+      - .:/code
+      - assets-volume:/code/app/assets/builds
+      - public-assets-volume:/code/public/assets
     stdin_open: true
     tty: true
+
+volumes:
+  assets-volume:
+  public-assets-volume:
